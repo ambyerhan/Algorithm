@@ -34,12 +34,14 @@ void quick_sort(int *arr, int head, int tail)
 		printf("Error!");
 		exit(-1);
 	}
+	if (head >= tail)
+		return;
 
 	int piovt = partition(arr, head, tail);
-	if (head < piovt - 1) // must be check
-		quick_sort(arr, head, piovt - 1);
-	if (piovt + 1 < tail)
-		quick_sort(arr, piovt + 1, tail);
+	//if (head < piovt - 1) // must be check
+	quick_sort(arr, head, piovt - 1);
+	//if (piovt + 1 < tail)
+	quick_sort(arr, piovt + 1, tail);
 }
 
 void test(int n, int *arr, int len)
