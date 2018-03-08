@@ -34,7 +34,6 @@ void printN(int n)
 //----
 
 // the answer
-
 bool increment(char *num)
 {
 	int len = strlen(num);
@@ -98,11 +97,50 @@ void printN_(int n)
 	free(number);
 	printf("\n");
 }
+//
+
+// do recursively
+void print_rec(char *num, int len, int idx)
+{
+	if (idx == len)
+	{
+		print(num);
+		return;
+	}
+
+	for (int i = 0; i < 10; ++i)
+	{
+		num[idx] = i + '0';
+		print_rec(num, len, idx + 1);
+	}
+}
+
+void printN_r(int n)
+{
+	if (n <= 0)
+	{
+		valid = false; // unvalid input
+		return;
+	}
+
+	char *num = (char *)malloc(sizeof(char) * (n + 1));
+	//memset(num, '0', n);
+	num[n] = '\0';
+
+	for (int i = 0; i < 10; ++i)
+	{
+		num[0] = i + '0';
+		print_rec(num, strlen(num), 1);
+	}
+
+	printf("\n");
+	free(num);
+}
 
 void test(int i, int n)
 {
 	printf("Test[%d]", i);
-	printN_(n);
+	printN_r(n);
 }
 
 void test1()
