@@ -28,20 +28,20 @@ void eight_queen(int *queen, int idx)
 		return;
 	}
 
-	for (int j = 0; j < N; ++j)
+	for (int j = 0; j < N; ++j) // check from first col to last col
 	{
 		bool canBeSet = true;
-		for (int i = 0; i < idx; ++i)
+		for (int i = 0; i < idx; ++i) // check pre queens from first row to current row(not include current row)
 		{
-			if (queen[i] == j || (abs(queen[i] - j) == abs(idx - i)) || (queen[i] + i) == (j + idx)) // not in a col and slash and back slash
+			if (queen[i] == j || (abs(queen[i] - j) == abs(idx - i)) || (queen[i] + i) == (j + idx)) // not in a col or slash or back slash
 			{
 				canBeSet = false;
-				break;
+				break; // position(idx, j) is not work
 			}
 		}
 		if (canBeSet)
 		{
-			queen[idx] = j;
+			queen[idx] = j; // set current queen and go next row
 			eight_queen(queen, idx + 1);
 		}
 	}
