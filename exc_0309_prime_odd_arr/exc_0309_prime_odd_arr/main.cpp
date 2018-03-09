@@ -17,7 +17,7 @@ bool isEven(int n)
 	//return n % 2 == 0 ? true : false;
 }
 
-void even_odd_arr(int *arr, int len)
+void even_odd_arr(int *arr, int len, bool (*fun)(int))
 {
 	if (!arr || len <= 0)
 	{
@@ -30,9 +30,9 @@ void even_odd_arr(int *arr, int len)
 	
 	while (i < j)
 	{
-		while (i < j && !isEven(arr[i]))
+		while (i < j && !fun(arr[i]))
 			++i;
-		while (i < j && isEven(arr[j]))
+		while (i < j && fun(arr[j]))
 			--j;
 		if (i < j)
 			swap(arr[i], arr[j]);
@@ -56,7 +56,7 @@ void test(int n, int *arr, int len)
 	printf("Test[%d]", n);
 	printf("\n\t>> bef: ");
 	printArr(arr, len);
-	even_odd_arr(arr, len);
+	even_odd_arr(arr, len, isEven);
 	printf("\t>> aft: ");
 	printArr(arr, len);
 }
