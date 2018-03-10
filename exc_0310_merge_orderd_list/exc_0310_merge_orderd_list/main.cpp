@@ -8,6 +8,28 @@ merging two orderd lists to a ordered list
 
 # include "List.h"
 
+// the recursive one, easy to understand
+ListNode *Merge(ListNode *pH1, ListNode *pH2)
+{
+	if (!pH1)
+		return pH2;
+	if (!pH2)
+		return pH1;
+
+	ListNode *pMerge = NULL;
+	if (pH1->data <= pH2->data)
+	{
+		pMerge = pH1;
+		pMerge->next = Merge(pH1->next, pH2);
+	}
+	else
+	{
+		pMerge = pH2;
+		pMerge->next = Merge(pH1, pH2->next);
+	}
+
+	return pMerge;
+}
 
 ListNode *merge_list(ListNode **pHead1, ListNode **pHead2)
 {
